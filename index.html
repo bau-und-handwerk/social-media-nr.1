@@ -243,7 +243,7 @@
 
   .hero-visual { position: relative; aspect-ratio: 4/5; display: flex; align-items: center; justify-content: center; }
   .hero-photo {
-    width: 100%; height: 100%; object-fit: contain;
+    width: 80%; height: 80%; object-fit: contain;
     filter: drop-shadow(0 30px 50px rgba(0,0,0,0.5));
   }
   .live-sticker {
@@ -542,6 +542,136 @@
   .info-box p strong { color: var(--ink) !important; }
   .info-box p em { color: var(--ink-soft) !important; }
 
+  /* SPICKZETTEL-SEKTION */
+  .spickzettel {
+    background: #15141a;
+    padding: 90px 0;
+    border-top: 1px solid var(--line);
+  }
+  .spickzettel-eyebrow {
+    display: inline-block;
+    background: var(--yellow);
+    color: var(--ink-on-yellow);
+    font-weight: 800;
+    font-size: 0.72rem;
+    padding: 6px 14px;
+    border-radius: 100px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 22px;
+  }
+  .spickzettel h2 {
+    color: var(--ink);
+    margin-bottom: 18px;
+    max-width: 800px;
+  }
+  .spickzettel h2 .yellow { color: var(--yellow); }
+  .spickzettel-sub {
+    color: var(--ink-soft);
+    font-size: 1.02rem;
+    max-width: 760px;
+    margin-bottom: 14px;
+    line-height: 1.55;
+  }
+  .spickzettel-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 28px;
+    margin-bottom: 50px;
+    padding: 22px 26px;
+    background: var(--bg-card);
+    border-radius: 14px;
+    border: 1px solid var(--line);
+  }
+  .spickzettel-stat {
+    flex: 1;
+    min-width: 180px;
+  }
+  .spickzettel-stat-num {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--yellow);
+    line-height: 1.1;
+    margin-bottom: 4px;
+    display: block;
+    letter-spacing: -0.02em;
+  }
+  .spickzettel-stat-label {
+    color: var(--ink-soft);
+    font-size: 0.86rem;
+    line-height: 1.4;
+  }
+
+  .spickzettel-table {
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    border-radius: 22px;
+    overflow: hidden;
+  }
+  .spickzettel-row {
+    display: grid;
+    grid-template-columns: 50px 1.1fr 2fr 1.5fr;
+    gap: 24px;
+    padding: 22px 28px;
+    border-bottom: 1px solid var(--line);
+    align-items: start;
+  }
+  .spickzettel-row:last-child { border-bottom: none; }
+  .spickzettel-row.header {
+    background: #0e0d0b;
+    padding: 14px 28px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--ink-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-weight: 600;
+  }
+  .spickzettel-num {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--yellow);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .spickzettel-hebel {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 700;
+    color: var(--ink);
+    font-size: 1.02rem;
+    line-height: 1.3;
+  }
+  .spickzettel-quote {
+    color: var(--ink-soft);
+    font-size: 0.94rem;
+    line-height: 1.55;
+    font-style: italic;
+  }
+  .spickzettel-action {
+    color: var(--ink);
+    font-size: 0.94rem;
+    line-height: 1.55;
+  }
+  .spickzettel-action strong { color: var(--yellow); font-weight: 600; }
+
+  @media (max-width: 800px) {
+    .spickzettel-row {
+      grid-template-columns: 50px 1fr;
+      gap: 14px;
+      padding: 22px 20px;
+    }
+    .spickzettel-row.header { display: none; }
+    .spickzettel-quote, .spickzettel-action {
+      grid-column: 2;
+      font-size: 0.88rem;
+    }
+    .spickzettel-quote { padding-top: 4px; border-top: 1px dashed var(--line); margin-top: 8px; }
+    .spickzettel-action { padding-top: 4px; }
+    .spickzettel-action::before { content: "→ "; color: var(--yellow); font-weight: 700; }
+  }
+
   /* COMMUNITY CTA */
   .community-cta { background: var(--bg-card); border-radius: 22px; padding: 60px 50px; margin-top: 60px; display: grid; grid-template-columns: 1.4fr 1fr; gap: 50px; align-items: center; border: 1px solid var(--line); position: relative; overflow: hidden; }
   .community-cta::before { content: ""; position: absolute; top: -100px; right: -100px; width: 300px; height: 300px; background: radial-gradient(circle, rgba(245,197,24,0.15) 0%, transparent 70%); pointer-events: none; }
@@ -555,10 +685,44 @@
   .community-cta-right { position: relative; z-index: 2; text-align: center; }
   .community-cta-right .meta { margin-top: 14px; color: var(--ink-muted); font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; }
 
-  footer { padding: 60px 0 40px; border-top: 1px solid var(--line); margin-top: 60px; }
+  footer { padding: 60px 0 0; border-top: 1px solid var(--line); margin-top: 60px; }
   footer p { color: var(--ink-muted); font-size: 0.92rem; }
   footer a { color: var(--yellow); text-decoration: none; border-bottom: 1px solid rgba(245,197,24,0.4); }
   .footer-meta { margin-top: 30px; padding-top: 24px; border-top: 1px solid var(--line); font-family: 'JetBrains Mono', monospace; font-size: 0.74rem; color: var(--ink-muted); letter-spacing: 0.04em; line-height: 1.7; }
+  .footer-bottom {
+    margin-top: 50px;
+    padding: 28px 0;
+    border-top: 1px solid var(--line);
+    background: #0a0908;
+  }
+  .footer-bottom-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .footer-copyright {
+    color: var(--ink-muted);
+    font-size: 0.82rem;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.04em;
+  }
+  .footer-links {
+    display: flex;
+    gap: 28px;
+    flex-wrap: wrap;
+  }
+  .footer-links a {
+    color: var(--ink-soft);
+    font-size: 0.86rem;
+    border-bottom: none;
+    transition: color 0.15s ease;
+  }
+  .footer-links a:hover { color: var(--yellow); }
+  @media (max-width: 600px) {
+    .footer-bottom-inner { flex-direction: column; align-items: flex-start; }
+  }
 
   @media (max-width: 600px) {
     .hero { padding: 40px 0 70px; }
@@ -891,13 +1055,120 @@
   </div>
 </section>
 
+<!-- SPICKZETTEL — Bonus am Ende -->
+<section class="spickzettel">
+  <div class="wrap">
+    <span class="spickzettel-eyebrow">Bonus · Tobi's Spickzettel</span>
+    <h2>Social-Media-Spickzettel <span class="yellow">für Handwerker.</span></h2>
+    <p class="spickzettel-sub">So hat Tobi diese Ergebnisse erzielt — die 10 Hebel, mit O-Ton und konkreter Handlung. Ausdrucken, an die Werkstatt-Wand, fertig.</p>
+
+    <div class="spickzettel-stats">
+      <div class="spickzettel-stat">
+        <span class="spickzettel-stat-num">80.000+</span>
+        <span class="spickzettel-stat-label">Follower<br>organisch aufgebaut</span>
+      </div>
+      <div class="spickzettel-stat">
+        <span class="spickzettel-stat-num">13 Mio.</span>
+        <span class="spickzettel-stat-label">YouTube-Views<br>konstant, nicht einmal viral</span>
+      </div>
+      <div class="spickzettel-stat">
+        <span class="spickzettel-stat-num">3× Mitarbeiter</span>
+        <span class="spickzettel-stat-label">Initiativbewerbungen<br>die wirklich zum Betrieb passen</span>
+      </div>
+      <div class="spickzettel-stat">
+        <span class="spickzettel-stat-num">Vorkasse-Kunden</span>
+        <span class="spickzettel-stat-label">aus reinem Vertrauen<br>ohne Preisdiskussion</span>
+      </div>
+    </div>
+
+    <div class="spickzettel-table">
+      <div class="spickzettel-row header">
+        <div>#</div>
+        <div>Hebel</div>
+        <div>O-Ton (Tobi)</div>
+        <div>Was Du tust</div>
+      </div>
+
+      <div class="spickzettel-row">
+        <div class="spickzettel-num">01</div>
+        <div class="spickzettel-hebel">Gesicht zeigen</div>
+        <div class="spickzettel-quote">„Accounts wachsen nur, wenn man auch das eigene Gesicht dazu zeigt."</div>
+        <div class="spickzettel-action">Du oder ein fester Mitarbeiter wird Gesicht des Betriebs.</div>
+      </div>
+
+      <div class="spickzettel-row">
+        <div class="spickzettel-num">02</div>
+        <div class="spickzettel-hebel">Kontinuität</div>
+        <div class="spickzettel-quote">„Was 90 % falsch machen? Keine Kontinuität. Man stößt das Thema einmal an, macht zwei Monate was, denkt: hat ja nichts gebracht — und pausiert wieder."</div>
+        <div class="spickzettel-action">Dranbleiben, auch wenn nichts passiert. <strong>Mindestens 6 Monate.</strong></div>
+      </div>
+
+      <div class="spickzettel-row">
+        <div class="spickzettel-num">03</div>
+        <div class="spickzettel-hebel">Einfach loslegen</div>
+        <div class="spickzettel-quote">„Nicht zu kompliziert denken und einfach mal loslegen."</div>
+        <div class="spickzettel-action">Smartphone raus, filmen, posten. <strong>Keine Konzept-Schleifen.</strong></div>
+      </div>
+
+      <div class="spickzettel-row">
+        <div class="spickzettel-num">04</div>
+        <div class="spickzettel-hebel">Mehrwert + Authentizität</div>
+        <div class="spickzettel-quote">„Wenn man guten Mehrwert schafft und sich gut und authentisch zeigt, dann kommt es automatisch."</div>
+        <div class="spickzettel-action">Echt sein &gt; poliert sein. Wissen teilen, nicht performen.</div>
+      </div>
+
+      <div class="spickzettel-row">
+        <div class="spickzettel-num">05</div>
+        <div class="spickzettel-hebel">Kontroverse = Expertise</div>
+        <div class="spickzettel-quote">„Umso kontroverser ich das Ganze aufbaue, desto mehr Expertise erzeuge ich bei meinem Kunden."</div>
+        <div class="spickzettel-action">Klare Meinung zu Stundensatz, Vorkasse, Schwarzarbeit. <strong>Keine Watte.</strong></div>
+      </div>
+
+      <div class="spickzettel-row">
+        <div class="spickzettel-num">06</div>
+        <div class="spickzettel-hebel">Anti-Hochglanz</div>
+        <div class="spickzettel-quote">„Authentische Inhalte zeigen, ohne zu Hochglanz zu denken — das macht's wieder komplizierter."</div>
+        <div class="spickzettel-action">Roh &gt; geschnitten. Handy &gt; Drohnenshot.</div>
+      </div>
+
+      <div class="spickzettel-row">
+        <div class="spickzettel-num">07</div>
+        <div class="spickzettel-hebel">Hater willkommen</div>
+        <div class="spickzettel-quote">„Es gibt immer jemand, der meckert drüber. Aber das belebt das Ganze."</div>
+        <div class="spickzettel-action">Kommentare zulassen, fachlich kontern, weiter machen.</div>
+      </div>
+
+      <div class="spickzettel-row">
+        <div class="spickzettel-num">08</div>
+        <div class="spickzettel-hebel">Stories täglich</div>
+        <div class="spickzettel-quote">„Stories machen das Thema lebendiger — man sieht, Du bist immer präsent."</div>
+        <div class="spickzettel-action"><strong>3-5 Stories am Tag</strong>, direkt aus der Instagram-App.</div>
+      </div>
+
+      <div class="spickzettel-row">
+        <div class="spickzettel-num">09</div>
+        <div class="spickzettel-hebel">Banales ist Gold</div>
+        <div class="spickzettel-quote">„Einfach das erzählen, was man jeden Tag tut. Hört sich für einen selber banal an. Aber das interessiert die Zuschauer."</div>
+        <div class="spickzettel-action">Zählerschrank, Leitungsführung, Kundengespräch — einfach drüber reden.</div>
+      </div>
+
+      <div class="spickzettel-row">
+        <div class="spickzettel-num">10</div>
+        <div class="spickzettel-hebel">Angst weg</div>
+        <div class="spickzettel-quote">„Nicht hinter irgendwelchen Ängsten verstecken. Zeig, was Du machst."</div>
+        <div class="spickzettel-action"><strong>Mund auf, Kamera an.</strong> Was Freunde denken — egal.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- DARK: COMMUNITY CTA -->
 <section class="dark-section">
   <div class="wrap">
     <div class="community-cta">
       <div>
         <span class="eyebrow-c">Wenn Du das wirklich umsetzen willst</span>
-        <h2>Hier sehen andere Betriebe, was wirklich anschlägt.</h2>
+        <h2>Hier setzen andere Betriebe das bereits um.</h2>
         <p>Praxis-Anleitungen, echte Einblicke und Austausch mit Betrieben, die's wirklich umsetzen – dauerhaft kostenlos.</p>
       </div>
       <div class="community-cta-right">
@@ -909,10 +1180,20 @@
 </section>
 
 <footer>
-  <div class="wrap">
+  <div class="wrap" style="padding-bottom: 40px;">
     <h3 style="color: var(--ink); font-size: 1.4rem; margin-bottom: 14px;">Mehr Wissensbausteine.</h3>
     <p>Wir bauen einfache, sofort umsetzbare Anleitungen für Handwerksbetriebe.</p>
     <p style="margin-top: 18px;">Wenn Dir das hier geholfen hat, schau Dir diesen Wissensbaustein an: <a href="https://bau-und-handwerk.github.io/Kunden-als-Verkaeufer/">Mehr von den richtigen Kunden gewinnen</a>.</p>
+  </div>
+  <div class="footer-bottom">
+    <div class="wrap footer-bottom-inner">
+      <div class="footer-copyright">© 2026 Bau &amp; Handwerk Netzwerk</div>
+      <div class="footer-links">
+        <a href="https://bau-handwerk-netzwerk.de/" target="_blank" rel="noopener">Bau &amp; Handwerk Netzwerk →</a>
+        <a href="https://bau-handwerk-netzwerk.de/impressum" target="_blank" rel="noopener">Impressum</a>
+        <a href="https://bau-handwerk-netzwerk.de/datenschutz" target="_blank" rel="noopener">Datenschutz</a>
+      </div>
+    </div>
   </div>
 </footer>
 
