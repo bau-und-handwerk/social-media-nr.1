@@ -111,6 +111,47 @@
   .hero-meta-num { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.7rem; font-weight: 800; color: var(--yellow); display: block; margin-bottom: 4px; }
   .hero-meta-label { font-size: 0.7rem; color: var(--ink-muted); text-transform: uppercase; letter-spacing: 0.12em; font-family: 'JetBrains Mono', monospace; }
 
+  /* STATEMENT SECTION (zwischen Hero und Credibility) */
+  .statement {
+    background: var(--bg);
+    padding: 80px 0;
+    text-align: center;
+    border-top: 1px solid var(--line);
+    position: relative;
+    overflow: hidden;
+  }
+  .statement::before {
+    content: "";
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    width: 120px;
+    height: 120px;
+    background-image: radial-gradient(circle, rgba(245,197,24,0.18) 1.5px, transparent 1.5px);
+    background-size: 14px 14px;
+    pointer-events: none;
+    opacity: 0.7;
+  }
+  .statement-h2 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: clamp(1.7rem, 4.4vw, 3.2rem);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+    color: var(--ink);
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+  .statement-h2 .strike-out {
+    text-decoration: line-through;
+    text-decoration-thickness: 5px;
+    text-decoration-color: var(--yellow);
+    color: var(--ink-muted);
+  }
+  .statement-h2 .yellow { color: var(--yellow); }
+
   /* CREDIBILITY-SEKTION (direkt unter Hero) — Grau-Stufe für Differenzierung */
   .credibility {
     background: #15141a;
@@ -672,7 +713,124 @@
     .spickzettel-action::before { content: "→ "; color: var(--yellow); font-weight: 700; }
   }
 
-  /* COMMUNITY CTA */
+  /* DRUCKEN-BUTTON */
+  .print-btn-wrap {
+    margin-top: 40px;
+    text-align: center;
+  }
+  .print-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--yellow);
+    color: var(--ink-on-yellow);
+    border: none;
+    padding: 16px 32px;
+    border-radius: 4px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 0.86rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  .print-btn:hover { background: var(--yellow-soft); transform: translateY(-1px); }
+  .print-btn-icon { font-size: 1.2rem; }
+
+  /* PRINT — nur Spickzettel drucken */
+  @media print {
+    @page {
+      size: A4;
+      margin: 12mm;
+    }
+    html, body {
+      background: white !important;
+      color: black !important;
+    }
+    /* alles ausblenden */
+    header,
+    .hero,
+    .credibility,
+    .yellow-section,
+    .dark-section,
+    .aha,
+    footer,
+    .spickzettel-stats,
+    .print-btn-wrap,
+    .header-btn {
+      display: none !important;
+    }
+    /* Spickzettel anzeigen, neutral stylen für Druck */
+    .spickzettel {
+      background: white !important;
+      padding: 0 !important;
+      border: none !important;
+      display: block !important;
+    }
+    .spickzettel * {
+      color: black !important;
+      background: white !important;
+      box-shadow: none !important;
+      border-color: #ccc !important;
+    }
+    .spickzettel .wrap { padding: 0; max-width: 100%; }
+    .spickzettel-eyebrow {
+      background: #f5c518 !important;
+      color: black !important;
+      border: 1px solid black !important;
+      print-color-adjust: exact;
+      -webkit-print-color-adjust: exact;
+      padding: 4pt 10pt !important;
+      margin-bottom: 12pt !important;
+    }
+    .spickzettel h2 {
+      font-size: 22pt !important;
+      margin-bottom: 6pt !important;
+      page-break-after: avoid;
+      max-width: 100% !important;
+    }
+    .spickzettel h2 .yellow { color: black !important; font-style: italic; }
+    .spickzettel-sub {
+      font-size: 10pt !important;
+      margin-bottom: 20pt !important;
+    }
+    .spickzettel-table {
+      border: 1px solid black !important;
+      border-radius: 0 !important;
+    }
+    .spickzettel-row {
+      border-bottom: 1px solid #ccc !important;
+      padding: 10pt 12pt !important;
+      page-break-inside: avoid;
+      grid-template-columns: 30px 1.1fr 2fr 1.5fr !important;
+      gap: 12pt !important;
+    }
+    .spickzettel-row.header {
+      background: black !important;
+      display: grid !important;
+    }
+    .spickzettel-row.header,
+    .spickzettel-row.header div {
+      color: white !important;
+      background: black !important;
+      print-color-adjust: exact;
+      -webkit-print-color-adjust: exact;
+    }
+    .spickzettel-num {
+      font-size: 14pt !important;
+      color: black !important;
+      font-weight: 800 !important;
+    }
+    .spickzettel-hebel {
+      font-size: 10pt !important;
+      font-weight: 700 !important;
+    }
+    .spickzettel-quote, .spickzettel-action {
+      font-size: 9pt !important;
+    }
+    .spickzettel-action strong { color: black !important; font-weight: 700 !important; }
+  }
   .community-cta { background: var(--bg-card); border-radius: 22px; padding: 60px 50px; margin-top: 60px; display: grid; grid-template-columns: 1.4fr 1fr; gap: 50px; align-items: center; border: 1px solid var(--line); position: relative; overflow: hidden; }
   .community-cta::before { content: ""; position: absolute; top: -100px; right: -100px; width: 300px; height: 300px; background: radial-gradient(circle, rgba(245,197,24,0.15) 0%, transparent 70%); pointer-events: none; }
   @media (max-width: 800px) { .community-cta { grid-template-columns: 1fr; padding: 40px 28px; } }
@@ -740,7 +898,7 @@
 <header>
   <div class="wrap header-inner">
     <div class="logo"><span class="yellow-dot">●</span> <span>Tobi's Tool Time</span></div>
-    <a href="https://bau-handwerk-netzwerk.de/" class="header-btn" target="_blank" rel="noopener">
+    <a href="https://www.bau-handwerk-netzwerk.de/" class="header-btn" target="_blank" rel="noopener">
       <span class="header-btn-text-long">Bau &amp; Handwerk</span> Netzwerk
       <span class="header-btn-arrow">→</span>
     </a>
@@ -752,12 +910,12 @@
   <div class="wrap hero-grid">
     <div>
       <span class="pill">Kostenloser Wissensbaustein für Handwerksbetriebe</span>
-      <h1>Für Social Media als Handwerker brauchst Du keine <span class="strike-out">Agentur</span>. <br>Du brauchst <span class="yellow">eine Entscheidung</span>.</h1>
+      <h1>Vom unsichtbaren Betrieb zu <span class="yellow">80.000 Followern.</span> <br>Deine Betriebsanleitung.</h1>
       <p class="hero-lead">
         Geht's Dir auch so? Du weißt, dass Du <strong>mehr auf Social Media sichtbar sein müsstest</strong> — aber statt einfach zu posten, wartest Du auf den "richtigen Moment". <em>Oder Du hast schon gepostet, wochenlang, und es passiert nichts?</em>
       </p>
       <p class="hero-emph">Dann liegt es nicht daran, dass Du es nicht kannst — <em style="color: var(--ink-soft); font-weight: 400;">sondern daran, dass Du bisher den falschen Ansatz hattest.</em></p>
-      <a href="#diagnose" class="hero-cta">Jetzt kostenlos lesen ↓</a>
+      <a href="#cred-section" class="hero-cta">Jetzt kostenlos lesen ↓</a>
       <div class="hero-meta">
         <div><span class="hero-meta-num">7 Min</span><span class="hero-meta-label">Lesen + Umsetzung</span></div>
         <div><span class="hero-meta-num">0 €</span><span class="hero-meta-label">Sofort einsetzbar</span></div>
@@ -776,7 +934,14 @@
   </div>
 </section>
 
-<!-- CREDIBILITY — direkt unter Hero -->
+<!-- STATEMENT — eigene Sektion mit der starken Aussage -->
+<section class="statement" id="cred-section">
+  <div class="wrap">
+    <h2 class="statement-h2">Für Social Media als Handwerker brauchst Du keine <span class="strike-out">Agentur</span>.<br>Du brauchst <span class="yellow">eine Entscheidung</span>.</h2>
+  </div>
+</section>
+
+<!-- CREDIBILITY -->
 <section class="credibility">
   <div class="wrap">
     <div class="cred-intro">
@@ -902,8 +1067,8 @@
       <div class="reminder-icon">📅</div>
       <div class="reminder-content">
         <h3>Damit Du's auch wirklich durchziehst:</h3>
-        <p>5 Erinnerungen direkt in Deinen Kalender. Mo–Fr, 19 Uhr. Push aufs Handy: <em>"Eine Story posten — heute."</em> Ein Klick, fertig — funktioniert mit Apple, Google &amp; Outlook.</p>
-        <button class="btn reminder-btn" onclick="downloadReminder()">📥 5-Tage-Erinnerung in Kalender laden</button>
+        <p>30 Erinnerungen direkt in Deinen Kalender. Mo–Fr, 19 Uhr, 6 Wochen lang. Push aufs Handy: <em>"Eine Story posten — heute."</em> Ein Klick, fertig — funktioniert mit Apple, Google &amp; Outlook.</p>
+        <button class="btn reminder-btn" onclick="downloadReminder()">📥 30-Tage-Erinnerung in Kalender laden</button>
         <p class="reminder-hint">Die Datei landet in Deinen Downloads — drauftippen, Kalender öffnet automatisch.</p>
       </div>
     </div>
@@ -990,7 +1155,7 @@
 <section class="dark-section">
   <div class="wrap-narrow">
     <span class="eyebrow">Teil 4 · Jetzt umsetzen in 7 Minuten</span>
-    <h2>Ich nehm Dir alles weg. <span class="yellow">Kein Denken mehr. Nur machen.</span></h2>
+    <h2>Das hier nimmt Dir <span class="yellow">die Hürde.</span></h2>
 
     <div class="schritte">
       <div class="schritt">
@@ -1159,6 +1324,13 @@
         <div class="spickzettel-action"><strong>Mund auf, Kamera an.</strong> Was Freunde denken — egal.</div>
       </div>
     </div>
+
+    <div class="print-btn-wrap">
+      <button class="print-btn" onclick="window.print()">
+        <span class="print-btn-icon">🖨️</span>
+        Spickzettel drucken
+      </button>
+    </div>
   </div>
 </section>
 
@@ -1172,7 +1344,7 @@
         <p>Praxis-Anleitungen, echte Einblicke und Austausch mit Betrieben, die's wirklich umsetzen – dauerhaft kostenlos.</p>
       </div>
       <div class="community-cta-right">
-        <a href="https://bau-handwerk-netzwerk.de/" class="btn" target="_blank" rel="noopener" style="text-decoration: none;">Zugang zur Community sichern →</a>
+        <a href="https://www.bau-handwerk-netzwerk.de/" class="btn" target="_blank" rel="noopener" style="text-decoration: none;">Zugang zur Community sichern →</a>
         <p class="meta">Bereits 50+ Handwerksbetriebe drin</p>
       </div>
     </div>
@@ -1189,9 +1361,9 @@
     <div class="wrap footer-bottom-inner">
       <div class="footer-copyright">© 2026 Bau &amp; Handwerk Netzwerk</div>
       <div class="footer-links">
-        <a href="https://bau-handwerk-netzwerk.de/" target="_blank" rel="noopener">Bau &amp; Handwerk Netzwerk →</a>
-        <a href="https://bau-handwerk-netzwerk.de/impressum" target="_blank" rel="noopener">Impressum</a>
-        <a href="https://bau-handwerk-netzwerk.de/datenschutz" target="_blank" rel="noopener">Datenschutz</a>
+        <a href="https://www.bau-handwerk-netzwerk.de/" target="_blank" rel="noopener">Bau &amp; Handwerk Netzwerk →</a>
+        <a href="https://www.haackelektro.de/datenschutz" target="_blank" rel="noopener">Impressum</a>
+        <a href="https://www.haackelektro.de/datenschutz" target="_blank" rel="noopener">Datenschutz</a>
       </div>
     </div>
   </div>
@@ -1289,14 +1461,13 @@
       pad(date.getUTCMinutes()) +
       pad(date.getUTCSeconds()) + 'Z';
   }
-  function getNext5Weekdays() {
+  function getNextNWeekdays(n) {
     const days = [];
     const now = new Date();
     let cursor = new Date(now);
-    // Wenn jetzt schon nach 19 Uhr → starte morgen
     if (now.getHours() >= 19) cursor.setDate(cursor.getDate() + 1);
-    while (days.length < 5) {
-      const dayOfWeek = cursor.getDay(); // 0 = So, 6 = Sa
+    while (days.length < n) {
+      const dayOfWeek = cursor.getDay();
       if (dayOfWeek !== 0 && dayOfWeek !== 6) {
         const d = new Date(cursor);
         d.setHours(19, 0, 0, 0);
@@ -1307,26 +1478,31 @@
     return days;
   }
   function downloadReminder() {
-    const days = getNext5Weekdays();
-    const titles = [
-      'Tag 1/5 — Eine Story posten. Heute.',
-      'Tag 2/5 — Eine Story posten. Heute.',
-      'Tag 3/5 — Halbzeit. Eine Story posten.',
-      'Tag 4/5 — Eine Story posten. Vier von fünf.',
-      'Tag 5/5 — Letzter Tag. Eine Story posten. Pact durchziehen.'
-    ];
-    const description = 'Eine Story. 15 Sekunden. Handy raus, draufhalten, Maul auf.\\nEgal wie ranzig — Hauptsache durchziehen.\\n\\nVorlagen + Tracker: bau-handwerk-netzwerk.de';
+    const total = 30;
+    const days = getNextNWeekdays(total);
+    const description = 'Eine Story. 15 Sekunden. Handy raus, draufhalten, Maul auf.\\nEgal wie ranzig — Hauptsache durchziehen.\\n\\nVorlagen + Spickzettel: www.bau-handwerk-netzwerk.de';
     const now = new Date();
     let ics = 'BEGIN:VCALENDAR\r\nVERSION:2.0\r\nPRODID:-//Bau Handwerk Netzwerk//Wissensbaustein 02//DE\r\nCALSCALE:GREGORIAN\r\nMETHOD:PUBLISH\r\n';
     days.forEach((day, i) => {
-      const end = new Date(day.getTime() + 15 * 60 * 1000); // 15 Min Termin
+      const tagNr = i + 1;
+      let title;
+      if (tagNr === 1) title = 'Tag 1/30 — Eine Story posten. Der erste ist der schwerste.';
+      else if (tagNr === 5) title = 'Tag 5/30 — Erste Woche fast geschafft.';
+      else if (tagNr === 10) title = 'Tag 10/30 — Ein Drittel durch. Weitermachen.';
+      else if (tagNr === 15) title = 'Tag 15/30 — Halbzeit. Hier brechen die meisten ab. Du nicht.';
+      else if (tagNr === 20) title = 'Tag 20/30 — Zwei Drittel. Algorithmus kennt Dich jetzt.';
+      else if (tagNr === 25) title = 'Tag 25/30 — Eine Woche noch. Durchziehen.';
+      else if (tagNr === 30) title = 'Tag 30/30 — Letzter Tag. Pact durchgezogen.';
+      else title = 'Tag ' + tagNr + '/30 — Eine Story posten. Heute.';
+
+      const end = new Date(day.getTime() + 15 * 60 * 1000);
       const uid = 'wb02-pact-' + day.getTime() + '-' + i + '@bau-handwerk-netzwerk.de';
       ics += 'BEGIN:VEVENT\r\n';
       ics += 'UID:' + uid + '\r\n';
       ics += 'DTSTAMP:' + formatICSDate(now) + '\r\n';
       ics += 'DTSTART:' + formatICSDate(day) + '\r\n';
       ics += 'DTEND:' + formatICSDate(end) + '\r\n';
-      ics += 'SUMMARY:' + titles[i] + '\r\n';
+      ics += 'SUMMARY:' + title + '\r\n';
       ics += 'DESCRIPTION:' + description + '\r\n';
       ics += 'BEGIN:VALARM\r\nTRIGGER:-PT0M\r\nACTION:DISPLAY\r\nDESCRIPTION:Eine Story posten — heute.\r\nEND:VALARM\r\n';
       ics += 'END:VEVENT\r\n';
@@ -1337,7 +1513,7 @@
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = 'social-media-pact-5-tage.ics';
+    a.download = 'social-media-pact-30-tage.ics';
     document.body.appendChild(a);
     a.click();
     setTimeout(() => {
